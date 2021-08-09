@@ -9,10 +9,9 @@ spec:
     checkout:
       ref:
         branch: master
-      
     commit:
       author:
-        email: nithinreddy2994@gamil.com
+        email: nithinreddy2994@gmail.com
         name: Nithin2994
       messageTemplate: 'test'
     push:
@@ -22,6 +21,6 @@ spec:
     kind: GitRepository
     name: game-server
   update:
-    path: ./clusters/my-cluster
+    path: clusters/my-cluster
     strategy: Setters
 
