@@ -1,7 +1,0 @@
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
-kind: GitRepository
-metadata:
-  name: game-server-golang
-spec:
-  url: https://github.com/Nithin2994/GameServer-golang.git
-  interval: 1m
