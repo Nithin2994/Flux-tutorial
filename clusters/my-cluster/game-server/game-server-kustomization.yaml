@@ -10,5 +10,5 @@ spec:
   prune: false
   sourceRef:
     kind: GitRepository
-    name: GameServer-golang
+    name: game-server
 
