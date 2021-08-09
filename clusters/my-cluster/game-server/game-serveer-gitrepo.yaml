@@ -1,0 +1,7 @@
+apiVersion: source.fluxcd.io/v1alpha1
+kind: GitRepository
+metadata:
+  name: game-server-golang
+spec:
+  url: https://github.com/Nithin2994/GameServer-golang.git
+  interval: 1m

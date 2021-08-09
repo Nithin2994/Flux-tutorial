@@ -3,7 +3,7 @@
 flux bootstrap git --url=https://github.com/Nithin2994/Flux-tutorial.git --components-extra=image-reflector-controller,image-automation-controller --username=Nithin2994 --password=Nithin524 --token-auth=true --branch=master --path=clusters/my-cluster
 
 
-flux bootstrap github --components-extra=image-reflector-controller,image-automation-controller --owner=Nithin2994 --repository=Flux-tutorial --branch=main --path=clusters/my-cluster --read-write-key --personal
+flux bootstrap github --components-extra=image-reflector-controller,image-automation-controller --owner=Nithin2994 --repository=Flux-tutorial --branch=master --path=clusters/my-cluster --read-write-key --personal
 
 mkdir app-podinfo
 
@@ -23,4 +23,14 @@ Github token -> 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
 
 flux create image repository game-server --image=nithin524/gameserver-golang --interval=1m --export > ./clusters/my-cluster/game-server/game-server-registry.yaml
 
-flux create image policy podinfo --image-ref=podinfo --select-semver=1.x --export > ./clusters/my-cluster/game-server/game-server-policy.yaml
+flux create image policy game-server --image-ref=game-server --select-semver=1.x --export > ./clusters/my-cluster/game-server/game-server-policy.yaml
+
+flux create image update game-server --git-repo-ref=game-server --git-repo-path="./clusters/my-cluster" --checkout-branch=master --push-branch=master --author-name=Nithin2994 --author-email=nithinreddy2994@gamil.com --commit-template="{{range .Updated.Images}}{{println .}}{{end}}" --export > ./clusters/my-cluster/game-server/game-server-automation.yaml
+
+ flux create image update game-server \
+    --git-repo-ref=GameServer-golang \
+    --git-repo-path="./kustomization" \
+    --checkout-branch=master \
+    --author-name=flux \
+    --author-email=flux@example.com \
+    --commit-template="{{range .Updated.Images}}{{println .}}{{end}}"

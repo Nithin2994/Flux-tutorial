@@ -1,26 +1,17 @@
----
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageUpdateAutomation
 metadata:
-  name: game-server
+  name: game-server-golang
   namespace: flux-system
 spec:
-  git:
-    checkout:
-      ref:
-        branch: master
-    commit:
-      author:
-        email: nithinreddy2994@gmail.com
-        name: Nithin2994
-      messageTemplate: 'test'
-    push:
-      branch: master
+  checkout:
+    branch: master
+    gitRepositoryRef:
+      name: game-server-golang
+  commit:
+    authorEmail: fluxcdbot@particule.io
+    authorName: fluxcdbot
+    messageTemplate: 'update image'
   interval: 1m0s
-  sourceRef:
-    kind: GitRepository
-    name: game-server
   update:
-    path: clusters/my-cluster
     strategy: Setters
-
