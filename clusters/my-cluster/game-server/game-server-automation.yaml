@@ -13,7 +13,7 @@ spec:
       author:
         email: nithinreddy2994@gamil.com
         name: Nithin2994
-      messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
+      messageTemplate: 'test'
     push:
       branch: master
   interval: 1m0s
