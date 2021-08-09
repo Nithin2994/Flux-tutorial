@@ -1,0 +1,10 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: game-server
+  namespace: flux-system
+spec:
+  image: nithin524/gameserver-golang
+  interval: 1m0s
+
