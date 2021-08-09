@@ -8,14 +8,14 @@ spec:
   git:
     checkout:
       ref:
-        branch: main
+        branch: master
     commit:
       author:
         email: nithinreddy2994@gamil.com
         name: Nithin2994
       messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
     push:
-      branch: main
+      branch: master
   interval: 1m0s
   sourceRef:
     kind: GitRepository
