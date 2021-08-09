@@ -9,6 +9,7 @@ spec:
     checkout:
       ref:
         branch: master
+      
     commit:
       author:
         email: nithinreddy2994@gamil.com
