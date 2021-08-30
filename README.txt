@@ -20,7 +20,7 @@ Flux create source git game-server --url="git@github.com:Nithin2994/Flux-tutoria
 
 Flux create kustomization game-server --source=GameServer-golang --path="./kustomize" --export > ./clusters/my-cluster/game-server/game-server-kustomization.yaml
 
-Github token -> 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
+Github token -> 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
 
 flux create image repository game-server --image=nithin524/gameserver-golang --interval=1m --export > ./clusters/my-cluster/game-server/game-server-registry.yaml
 

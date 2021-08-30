@@ -19,7 +19,7 @@ spec:
   interval: 1m0s
   sourceRef:
     kind: GitRepository
-    name: game-server
+    name: infra-server
   update:
     path: ./kustomize
     strategy: Setters
