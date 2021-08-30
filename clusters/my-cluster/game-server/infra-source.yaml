@@ -8,5 +8,5 @@ spec:
   interval: 30s
   ref:
     branch: master
-  url: https://github.com/Nithin2994/Flux-tutorial
+  url: https://github.com/Nithin2994/Flux-tutorial.git 
 
