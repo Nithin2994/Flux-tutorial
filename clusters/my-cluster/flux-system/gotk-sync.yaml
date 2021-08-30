@@ -10,7 +10,7 @@ spec:
     branch: master
   secretRef:
     name: flux-system
-  url: https://github.com/Nithin2994/Flux-tutorial.git
+  url: ssh://git@github.com/Nithin2994/Flux-tutorial
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
