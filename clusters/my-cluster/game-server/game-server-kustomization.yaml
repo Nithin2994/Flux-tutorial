@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m0s
-  path: ./kustomisations
+  path: ./clusters/my-cluster/game-server/kustomisations
   prune: false
   sourceRef:
     kind: GitRepository
