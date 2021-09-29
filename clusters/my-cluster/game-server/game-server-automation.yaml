@@ -13,14 +13,14 @@ spec:
       author:
         email: nithinreddy2994@gamil.com
         name: Nithin2994
-      messageTemplate: ''
+      messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
     push:
       branch: master
   interval: 1m0s
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: game-server
   update:
-    path: ./clusters/my-cluster/game-server/kustomisations
+    path: ./kustomize
     strategy: Setters
 
