@@ -5,7 +5,6 @@ metadata:
   name: gameserver-golang-image-update
   namespace: flux-system
 spec:
-  gitImplementation: libgit2
   git:
     checkout:
       ref:
