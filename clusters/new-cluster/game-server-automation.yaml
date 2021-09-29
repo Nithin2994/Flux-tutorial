@@ -14,10 +14,16 @@ spec:
         email: nithinreddy2994@gamil.com
         name: Nithin2994
       messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
+      signingKey:
+        secretRef:
+          name: git-gpg
     push:
       branch: main-push
   interval: 1m0s
   sourceRef:
     kind: GitRepository
     name: flux-system
+  update:
+    path: ./cluster/new-cluster/kustomize
+    strategy: Setters
 
