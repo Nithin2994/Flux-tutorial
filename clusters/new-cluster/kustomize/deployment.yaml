@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: game-server
+  namespace: dev
+  labels:
+    app: game-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: game-server
+  template:
+    metadata:
+      labels:
+        app: game-server
+    spec:
+      containers:
+      - name: game-server
+        image: "nithin524/gameserver-golang:v1.0.3" # {"$imagepolicy": "flux-system:game-server"}
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8081

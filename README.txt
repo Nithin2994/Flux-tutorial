@@ -33,7 +33,9 @@ flux bootstrap github --hostname=github.com --ssh-hostname=github.com --owner=Ni
 
 flux create secret git game-server-secret --url="https://github.com/Nithin2994/GameServer-golang" --username=Nithin2994 --password=Nithin524
 
-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
+
+---------NEW CLUSTER------------------
+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
 
 public key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDhe9cR38X8hT1dBxsLKnHdhL442JtP4A943RUf5WyUnOVKsVyo7Fwb4xGVGnLCbyneCjXIH8UomWRgWUpVLBpFfWEqklXw1h6AD8RUwYiNST54/ePWYRlQ48bIobXYNHtS1jRSUw6JGEvt9dzoUbmAdxxIoT+Cj+TJ9PYDvGFeRrrcmEBV8/qNXHo/b/uSodU57OkBWdhkGZorRZTodeFS5ZlfVyZ6yGMZfLff90mq8kbVHHxOnlMl3HsbcaAzjMBaaiIR0YxuL+ZE6lfdtHpWSAbQFX4Qs+G77Ei1q911gUoa7SymXUGIuycuRysbLwQMdj8OSakYLRWwR9p92I3
 
@@ -55,6 +57,25 @@ flux bootstrap github \
   --source=gameserver-golang \
   --path="./kustomize" \
   --prune=true \
-  --validation=client \
   --interval=5m \
   --export > ./clusters/new-cluster/gameserver-golang-kustomization.yaml
+
+  flux create secret git gameserver-golang-credentials \
+    --url=https://github.com/Nithin2994/GameServer-golang \
+    --username=Nithin2994 \
+    --password=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
+
+  flux create image repository gameserver-golang-image-repo --image=nithin524/gameserver-golang --interval=1m --export > ./clusters/my-cluster/game-server/game-server-image-registry.yaml
+
+  flux create image policy gameserver-golang-image-policy \
+    --image-ref=game-server \
+    --select-semver=1.0.x
+
+  flux create image update gameserver-golang-image-update \
+    --git-repo-ref=gameserver-golang \
+    --git-repo-path="/kustomize" \
+    --checkout-branch=master \
+    --push-branch=main \
+    --author-name=flux \
+    --author-email=flux@example.com \
+    --commit-template="{{range .Updated.Images}}{{println .}}{{end}}"
