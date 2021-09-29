@@ -6,7 +6,5 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30s
-  ref:
-    branch: master
   url: https://github.com/Nithin2994/GameServer-golang
 
