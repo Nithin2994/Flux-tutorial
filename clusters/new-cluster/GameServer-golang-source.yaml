@@ -9,4 +9,5 @@ spec:
   ref:
     branch: master
   url: https://github.com/Nithin2994/GameServer-golang
-
+  secretRef:
+    name: gameserver-golang-credentials
