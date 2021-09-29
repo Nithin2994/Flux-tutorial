@@ -1,26 +1,42 @@
+# ---
+# apiVersion: image.toolkit.fluxcd.io/v1beta1
+# kind: ImageUpdateAutomation
+# metadata:
+#   name: gameserver-golang-image-update
+#   namespace: flux-system
+# spec:
+#   git:
+#     checkout:
+#       ref:
+#         branch: main
+#     commit:
+#       author:
+#         email: nithinreddy2994@gamil.com
+#         name: Nithin2994
+#       messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
+#       signingKey:
+#         secretRef:
+#           name: git-gpg
+#     push:
+#       branch: main-push
+#   interval: 1m0s
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-system
+
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageUpdateAutomation
 metadata:
   name: gameserver-golang-image-update
   namespace: flux-system
 spec:
-  git:
-    checkout:
-      ref:
-        branch: main
-    commit:
-      author:
-        email: nithinreddy2994@gamil.com
-        name: Nithin2994
-      messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
-      signingKey:
-        secretRef:
-          name: git-gpg
-    push:
-      branch: main-push
-  interval: 1m0s
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-
+  checkout:
+    gitRepositoryRef:
+      name: flux-system
+    branch: main
+  interval: 1m
+  # update strategy is left to default to "Setters"
+  commit:
+    authorName: Fluxbot
+    authorEmail: fluxbot@example.com
