@@ -23,7 +23,4 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  update:
-    path: ./cluster/new-cluster/kustomize
-    strategy: Setters
 
