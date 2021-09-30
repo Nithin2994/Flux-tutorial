@@ -11,4 +11,10 @@ spec:
   sourceRef:
     kind: GitRepository
     name: gameserver-golang
-
+  targetNamespace: dev
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: game-server
+      namespace: dev
+  timeout: 1m

@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: github
+  namespace: flux-system
+data:
+  token: Z2hwXzNPb3JGR3pTYW1aS282QUFyaUNJTW9EREJrd2ZlVDBTOEJmYw== #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
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Provider
+metadata:
+  name: game-server
+  namespace: flux-system
+spec:
+  type: github
+  address: https://github.com/Nithin2994/GameServer-golang
+  secretRef:
+    name: github
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Alert
+metadata:
+  name: game-server
+  namespace: flux-system
+spec:
+  providerRef:
+    name: game-server
+  eventSeverity: info
+  eventSources:
+    - kind: Kustomization
+      name: gameserver-golang
+      namespace: flux-system
