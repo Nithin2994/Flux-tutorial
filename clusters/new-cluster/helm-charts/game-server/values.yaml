@@ -1,0 +1,10 @@
+app:
+  name: game-server-helm
+
+cluster:
+  env: dev
+
+gameserver:
+  replicas: 2
+  image: "nithin524/gameserver-golang:v1.0.3"
+  port: 8081
