@@ -54,8 +54,14 @@ sub   rsa4096 2021-09-29 [E]
 kubectl create secret generic github-game-server --namespace flux-system --from-literal=token=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
 
 -------HELM-----------
-pwd : /Users/nithin.reddy/Documents/GitHub/Flux-tutorial/clusters/new-cluster/helm-charts
+pwd : /Users/nithin.reddy/Documents/GitHub/Flux-tutorial/clusters/helm-charts
 
 helm create game-server
 helm install game-server-helm game-server/
 helm uninstall game-server-helm
+
+helm list
+helm package game-server/
+
+helm install --set cluster.env=default gameserver-helm http://localhost:8100/game-server-0.1.0.tgz
+
