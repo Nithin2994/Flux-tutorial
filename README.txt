@@ -1,4 +1,7 @@
----------NEW CLUSTER------------------
+---------FLUX------------
+GitOps : Automating kubernetes deployments
+
+
 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
 
 public key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDhe9cR38X8hT1dBxsLKnHdhL442JtP4A943RUf5WyUnOVKsVyo7Fwb4xGVGnLCbyneCjXIH8UomWRgWUpVLBpFfWEqklXw1h6AD8RUwYiNST54/ePWYRlQ48bIobXYNHtS1jRSUw6JGEvt9dzoUbmAdxxIoT+Cj+TJ9PYDvGFeRrrcmEBV8/qNXHo/b/uSodU57OkBWdhkGZorRZTodeFS5ZlfVyZ6yGMZfLff90mq8kbVHHxOnlMl3HsbcaAzjMBaaiIR0YxuL+ZE6lfdtHpWSAbQFX4Qs+G77Ei1q911gUoa7SymXUGIuycuRysbLwQMdj8OSakYLRWwR9p92I3
@@ -54,6 +57,8 @@ sub   rsa4096 2021-09-29 [E]
 kubectl create secret generic github-game-server --namespace flux-system --from-literal=token=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
 
 -------HELM-----------
+PACKAGE MANAGER
+
 pwd : /Users/nithin.reddy/Documents/GitHub/Flux-tutorial/clusters/helm-charts
 
 helm create game-server
@@ -65,3 +70,17 @@ helm package game-server/
 
 helm install --set cluster.env=default gameserver-helm http://localhost:8100/game-server-0.1.0.tgz
 
+
+------KUBELESS--------
+
+export RELEASE=$(curl -s https://api.github.com/repos/kubeless/kubeless/releases/latest | grep tag_name | cut -d '"' -f 4)
+kubectl create ns kubeless
+kubectl create -f https://github.com/kubeless/kubeless/releases/download/$RELEASE/kubeless-$RELEASE.yaml
+export OS=$(uname -s| tr '[:upper:]' '[:lower:]')
+curl -OL https://github.com/kubeless/kubeless/releases/download/$RELEASE/kubeless_$OS-amd64.zip &&   unzip kubeless_$OS-amd64.zip &&   sudo mv bundles/kubeless_$OS-amd64/kubeless /usr/local/bin/
+
+kubeless function deploy hello --runtime python3.6 --from-file test.py --handler test.hello
+
+kubeless function call hello --data 'Hello world!'
+
+kubeless trigger http create get-python --function-name hello
